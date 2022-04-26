@@ -4,65 +4,76 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>Weather or Not</title>
   </head>
   <body>
     <header class="header">Weather Dashboard</header>
-    <main class="flex-row justify-content-space-between">
-      <!-- search boc -->
-      <div class="search-box">
-        <h2>Seach for a City:</h2>
-        <input
-          class="city-search"
-          placeholder="Search for a City"
-          type="text"
-        />
-        <button class="search-btn" type="button">Search</button>
+    <main class="row m-1">
+      <!-- search box -->
+      <div class="col-12 col-md-4 container">
+        <div class="card search-box">
+          <h2 class="card-header">Seach for a City:</h2>
+          <input
+            class="city-search"
+            placeholder="Search for a City"
+            type="text"
+          />
+          <button class="search-btn" type="button">Search</button>
+          <div>
+            <!-- saved cities create -->
+          </div>
+        </div>
       </div>
-      <!-- saved cities create -->
 
       <!-- current city display -->
-      <div class="city-container">
-        <h2 class="current-city">Current City</h2>
-        <div class="text">Temp:</div>
-        <div class="text">Wind:</div>
-        <div class="text">Humidity:</div>
-        <div class="text">UV Index:</div>
-      </div>
+      <div class="col-12 col-md-8 container">
+        <div class="card" id="city-card">
+          <h2 class="current-city">Current City</h2>
+          <div class="text">Temp:</div>
+          <div class="text">Wind:</div>
+          <div class="text">Humidity:</div>
+          <div class="text">UV Index:</div>
+        </div>
 
-      <!-- forecast cards -->
-      <div class="forecast-container">
-        <div class="forecast-card">
-          <div class="forecast-text"></div>
-          <div class="forecast-text">Temp:</div>
-          <div class="forecast-text">Wind:</div>
-          <div class="forecast-text">Humidity:</div>
-        </div>
-        <div class="forecast-card">
-          <div class="forecast-text"></div>
-          <div class="forecast-text">Temp:</div>
-          <div class="forecast-text">Wind:</div>
-          <div class="forecast-text">Humidity:</div>
-        </div>
-        <div class="forecast-card">
-          <div class="forecast-text"></div>
-          <div class="forecast-text">Temp:</div>
-          <div class="forecast-text">Wind:</div>
-          <div class="forecast-text">Humidity:</div>
-        </div>
-        <div class="forecast-card">
-          <div class="forecast-text"></div>
-          <div class="forecast-text">Temp:</div>
-          <div class="forecast-text">Wind:</div>
-          <div class="forecast-text">Humidity:</div>
-        </div>
-        <div class="forecast-card">
-          <div class="forecast-text"></div>
-          <div class="forecast-text">Temp:</div>
-          <div class="forecast-text">Wind:</div>
-          <div class="forecast-text">Humidity:</div>
+        <!-- forecast cards -->
+        <h3 class="pt-2">5 Day Forecast:</h3>
+        <div class="row card-group forecast-container">
+          <div class="card forecast-card">
+            <div class="forecast-text"></div>
+            <div class="forecast-text">Temp:</div>
+            <div class="forecast-text">Wind:</div>
+            <div class="forecast-text">Humidity:</div>
+          </div>
+          <div class="card forecast-card">
+            <div class="forecast-text"></div>
+            <div class="forecast-text">Temp:</div>
+            <div class="forecast-text">Wind:</div>
+            <div class="forecast-text">Humidity:</div>
+          </div>
+          <div class="card forecast-card">
+            <div class="forecast-text"></div>
+            <div class="forecast-text">Temp:</div>
+            <div class="forecast-text">Wind:</div>
+            <div class="forecast-text">Humidity:</div>
+          </div>
+          <div class="card forecast-card">
+            <div class="forecast-text"></div>
+            <div class="forecast-text">Temp:</div>
+            <div class="forecast-text">Wind:</div>
+            <div class="forecast-text">Humidity:</div>
+          </div>
+          <div class="card forecast-card">
+            <div class="forecast-text"></div>
+            <div class="forecast-text">Temp:</div>
+            <div class="forecast-text">Wind:</div>
+            <div class="forecast-text">Humidity:</div>
+          </div>
         </div>
       </div>
     </main>
