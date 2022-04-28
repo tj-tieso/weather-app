@@ -16,17 +16,41 @@ var getCityWeather = function (city) {
     city +
     "&units=imperial&appid=ec98aa86db3b155818673df4ee8db72f";
 
-  // make a get request
   fetch(apiUrl)
     .then(function (response) {
-      // if response is ok
       if (response.ok) {
         response.json().then(function (data) {
-          displayCity(data, city);
-          // console.log(data, city);
+          // get lat and lon for getForecast
+          var lat = data.coord.lat;
+          var lon = data.coord.lon;
+          getForecast(lat, lon);
+          // input city name
+          searchedCity.textContent = city;
         });
       } else {
         alert("Could not find city, please try again");
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to OpenWeather");
+    });
+};
+
+var getForecast = function (lat, lon) {
+  var forecastUrl =
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&exclude=hourly,minutely&units=imperial&appid=ec98aa86db3b155818673df4ee8db72f";
+
+  fetch(forecastUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          // console.log(data);
+          displayForecast(data);
+        });
       }
     })
     .catch(function (error) {
@@ -49,23 +73,26 @@ var formSubmitHandler = function (event) {
 };
 
 // display current weather
-var displayCity = function (weather, searchTerm) {
-  console.log(weather);
-  console.log(searchTerm);
+// var displayCity = function (weather, searchTerm) {
+//   cityInputEl.textContent = "";
+//   searchedCity.textContent = searchTerm;
+// };
 
-  cityInputEl.textContent = "";
-  searchedCity.textContent = searchTerm;
-  cityTemp.textContent = weather.main.temp;
-  cityWind.textContent = weather.wind.speed;
-  cityHumidity.textContent = weather.main.humidity;
-  // cityUv.textContent = weather.
+var displayForecast = function (data) {
+  console.log(data);
+  cityUv.textContent = data.current.uvi;
+  cityTemp.textContent = data.current.temp;
+  cityWind.textContent = data.current.wind_speed;
+  cityHumidity.textContent = data.current.humidity;
+
+  var forecast = data.daily[i];
+
+  for (var i = 0; i < 4; i++) {}
 };
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-// getWeatherApi("Santiago");
+// getWeatherApi();
 
-// make API call
-// Input data into Hero
 // Store data in local storage
 // generate "saved city" el
 
