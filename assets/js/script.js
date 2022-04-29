@@ -78,7 +78,7 @@ var displayForecast = function (data) {
   $(".forecast-container").empty();
 
   for (var i = 1; i < 6; i++) {
-    console.log(data.daily[i]);
+    // console.log(data.daily[i]);
     var dateDisplay = moment.unix(data.daily[i].dt).format("ddd, MMM, Do");
     // console.log(dateDisplay);
     var forecastCol = $("<div>").addClass("col-2");
@@ -129,7 +129,6 @@ var formSubmitHandler = function (event) {
   if (cityName) {
     getCityWeather(cityName);
     saveCity(cityName);
-    // localStorage.setItem("cityName", cityName);
     cityInputEl.value = "";
   } else {
     alert("Please enter valid city name");
@@ -138,15 +137,37 @@ var formSubmitHandler = function (event) {
 
 var saveCity = function (cityName) {
   cityArr.push(cityName);
-  localStorage.setItem("city", JSON.stringify(cityArr));
+  localStorage.setItem("city", cityArr);
   // create button
-  var cityBtn = $("<button>").addClass("btn btn-light").text(cityName);
+  var cityBtn = $("<button>")
+    .addClass("btn btn-light")
+    .attr("id", "city-btn")
+    .text(cityName);
   $(".save-container").append(cityBtn);
 };
 
+// click saved city button to display city weather
+$(document).on("click", "#city-btn", function () {
+  var cityText = $("#city-btn").text();
+  // console.log(cityText);
+  getCityWeather(cityText);
+});
+
+// load last city and buttons from localStorage
+var loadCities = function () {
+  var tempArr = localStorage.getItem("city");
+  var retrievedCities = JSON.parse(tempArr);
+  console.log(retrievedCities);
+  // for (var i = 0; i < retrievedCities.length; i++) {
+  //   // var name = tempArr[i];
+  //   var cityBtn = $("<button>")
+  //     .addClass("btn btn-light")
+  //     .attr("id", "city-btn")
+  //     .text(name);
+  //   $(".save-container").append(cityBtn);
+  // }
+};
+// // add limit to how many cities can be stored
+loadCities();
+
 userFormEl.addEventListener("submit", formSubmitHandler);
-
-// Store data in local storage
-// generate "saved city" el
-
-// replace current city when "saved city" is clicked
