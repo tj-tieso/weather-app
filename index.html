@@ -16,71 +16,56 @@
   </head>
   <body>
     <header class="header">Weather Dashboard</header>
-    <main class="row m-1">
+    <main class="m-1" style="border: 1px solid black">
       <!-- search box -->
-      <div class="col-12 col-md-4 container card search-box">
-        <div class="card">
-          <!-- class="col-12 col-md-4 container"-->
-          <h2 class="card-header">Seach for a City:</h2>
-          <form id="user-form" class="card-body">
-            <input class="city-search" placeholder="Santiago" type="text" />
-            <button class="search-btn" type="submit">Search</button>
-          </form>
+      <div class="row" style="border: 1px solid black">
+        <div class="col-12 col-md-4 container card search-box">
+          <div class="card">
+            <!-- class="col-12 col-md-4 container"-->
+            <h2 class="card-header">Seach for a City:</h2>
+            <form id="user-form" class="card-body">
+              <input class="city-search" placeholder="Santiago" type="text" />
+              <button class="search-btn" type="submit">Search</button>
+            </form>
+          </div>
+
+          <div class="save-container">
+            <!-- saved cities create -->
+          </div>
         </div>
 
-        <div>
-          <!-- saved cities create -->
+        <!-- current city display -->
+        <div class="col-12 col-md-8 container">
+          <div class="card" id="city-card">
+            <h2 class="current-city">
+              Current City: <span id="searched-city"></span>
+            </h2>
+            <div class="text">Temp: <span id="city-temp"></span> °F</div>
+            <div class="text">Wind: <span id="city-wind"></span> mph</div>
+            <div class="text">Humidity: <span id="city-humidity"></span>%</div>
+            <div class="text">UV Index: <span id="city-uv"></span></div>
+          </div>
         </div>
       </div>
-
-      <!-- current city display -->
-      <div class="col-12 col-md-8 container">
-        <div class="card" id="city-card">
-          <h2 class="current-city">
-            Current City: <span id="searched-city"></span>
-          </h2>
-          <div class="text">Temp: <span id="city-temp"></span> °F</div>
-          <div class="text">Wind: <span id="city-wind"></span> mph</div>
-          <div class="text">Humidity: <span id="city-humidity"></span>%</div>
-          <div class="text">UV Index: <span id="city-uv"></span></div>
-        </div>
-
-        <!-- forecast cards -->
-        <h3 class="pt-2">5 Day Forecast:</h3>
-        <div class="row card-group forecast-container">
-          <div class="card forecast-card">
-            <div class="forecast-text"></div>
-            <div class="forecast-text">Temp:</div>
-            <div class="forecast-text">Wind:</div>
-            <div class="forecast-text">Humidity:</div>
-          </div>
-          <div class="card forecast-card">
-            <div class="forecast-text"></div>
-            <div class="forecast-text">Temp:</div>
-            <div class="forecast-text">Wind:</div>
-            <div class="forecast-text">Humidity:</div>
-          </div>
-          <div class="card forecast-card">
-            <div class="forecast-text"></div>
-            <div class="forecast-text">Temp:</div>
-            <div class="forecast-text">Wind:</div>
-            <div class="forecast-text">Humidity:</div>
-          </div>
-          <div class="card forecast-card">
-            <div class="forecast-text"></div>
-            <div class="forecast-text">Temp:</div>
-            <div class="forecast-text">Wind:</div>
-            <div class="forecast-text">Humidity:</div>
-          </div>
-          <div class="card forecast-card">
-            <div class="forecast-text"></div>
-            <div class="forecast-text">Temp:</div>
-            <div class="forecast-text">Wind:</div>
-            <div class="forecast-text">Humidity:</div>
-          </div>
-        </div>
+      <!-- forecast cards -->
+      <div class="row" style="border: 1px solid black">
+        <h3 class="col-4">5 Day Forecast:</h3>
+      </div>
+      <div class="row card-group forecast-container">
+        <!-- <div class="card forecast-card forecast-text">
+            <div id="forecast-date"></div>
+            <div>Temp: <span class="forecast-temp"></span></div>
+            <div>Wind: <span class="forecast-wind"></span></div>
+            <div>Humidity: <span class="forecast-humidity"></span></div>
+          </div> -->
+        <!-- end forecast -->
       </div>
     </main>
+    <!-- moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
+
+<!-- use bootstrap for uv index color box -->
