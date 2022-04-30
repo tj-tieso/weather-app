@@ -137,37 +137,40 @@ var formSubmitHandler = function (event) {
 
 var saveCity = function (cityName) {
   cityArr.push(cityName);
-  localStorage.setItem("city", cityArr);
+  localStorage.setItem("city", cityArr); //JSON.stringify(cityArr)
   // create button
-  var cityBtn = $("<button>")
-    .addClass("btn btn-light")
-    .attr("id", "city-btn")
-    .text(cityName);
+  var cityBtn = $("<button>").addClass("btn btn-light city-btn").text(cityName);
   $(".save-container").append(cityBtn);
 };
 
 // click saved city button to display city weather
-$(document).on("click", "#city-btn", function () {
-  var cityText = $("#city-btn").text();
+$(document).on("click", ".city-btn", function () {
+  var cityText = $(this).text();
   // console.log(cityText);
   getCityWeather(cityText);
 });
 
 // load last city and buttons from localStorage
 var loadCities = function () {
-  var tempArr = localStorage.getItem("city");
-  var retrievedCities = JSON.parse(tempArr);
-  console.log(retrievedCities);
-  // for (var i = 0; i < retrievedCities.length; i++) {
-  //   // var name = tempArr[i];
-  //   var cityBtn = $("<button>")
-  //     .addClass("btn btn-light")
-  //     .attr("id", "city-btn")
-  //     .text(name);
-  //   $(".save-container").append(cityBtn);
-  // }
+  if (localStorage.getItem("city") !== null) {
+    var retrievedCities = localStorage.getItem("city").split(",");
+    console.log(retrievedCities);
+
+    for (var i = 0; i < retrievedCities.length; i++) {
+      var cityName = retrievedCities[i];
+      var cityBtn = $("<button>")
+        .addClass("btn btn-light city-btn")
+        .text(cityName);
+      $(".save-container").append(cityBtn);
+    }
+  } else {
+    console.log("no cities saved");
+  }
 };
-// // add limit to how many cities can be stored
+
+// add limit to how many cities can be stored
 loadCities();
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+// attach listerner to parent element, .on(click)
