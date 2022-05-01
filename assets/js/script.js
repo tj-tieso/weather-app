@@ -10,12 +10,6 @@ var cityWind = document.querySelector("#city-wind");
 var cityHumidity = document.querySelector("#city-humidity");
 var cityUv = document.querySelector("#city-uv");
 
-// forecast variables
-// var forecastDate = document.querySelector("#forecast-date")
-var forecastTemp = document.querySelector(".forecast-temp");
-var forecastWind = document.querySelector(".forecast-wind");
-var forecastHumidity = document.querySelector(".forecast-humidity");
-
 var cityArr = [];
 
 // API request
@@ -124,7 +118,6 @@ var displayForecast = function (data) {
 var formSubmitHandler = function (event) {
   event.preventDefault();
   var cityName = cityInputEl.value.trim();
-  // console.log(cityName);
 
   if (cityName) {
     getCityWeather(cityName);
@@ -136,25 +129,30 @@ var formSubmitHandler = function (event) {
 };
 
 var saveCity = function (cityName) {
-  cityArr.push(cityName);
-  localStorage.setItem("city", cityArr); //JSON.stringify(cityArr)
-  // create button
-  var cityBtn = $("<button>").addClass("btn btn-light city-btn").text(cityName);
-  $(".save-container").append(cityBtn);
+  if (cityArr.length < 5) {
+    cityArr.push(cityName);
+    localStorage.setItem("city", cityArr);
+    // create button
+    var cityBtn = $("<button>")
+      .addClass("btn btn-light city-btn")
+      .text(cityName);
+    $(".save-container").append(cityBtn);
+  } else {
+    console.log("function to replace cityArr[0]");
+  }
 };
 
 // click saved city button to display city weather
 $(document).on("click", ".city-btn", function () {
   var cityText = $(this).text();
-  // console.log(cityText);
   getCityWeather(cityText);
 });
 
 // load last city and buttons from localStorage
 var loadCities = function () {
+  // if local storage is not empty
   if (localStorage.getItem("city") !== null) {
     var retrievedCities = localStorage.getItem("city").split(",");
-    console.log(retrievedCities);
 
     for (var i = 0; i < retrievedCities.length; i++) {
       var cityName = retrievedCities[i];
@@ -162,15 +160,16 @@ var loadCities = function () {
         .addClass("btn btn-light city-btn")
         .text(cityName);
       $(".save-container").append(cityBtn);
+      cityArr.push(cityName);
     }
+    // if local storage is empty
   } else {
     console.log("no cities saved");
   }
+  console.log(cityArr);
 };
 
 // add limit to how many cities can be stored
 loadCities();
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-
-// attach listerner to parent element, .on(click)
