@@ -1,5 +1,9 @@
 # Week 6. Server-Side APIs Challenge: Weather Dashboard
 
+![weather dashboard screenshot](/assets/images/weather-app.png?raw=true)
+
+https://tj-tieso.github.io/weather-app/
+
 ## User Story
 
 AS A traveler
